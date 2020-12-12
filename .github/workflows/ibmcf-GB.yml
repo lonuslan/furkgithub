@@ -1,5 +1,5 @@
 
-name: IBM Cloud Foundry - V2Ray 
+name: IBM Cloud Foundry - Lonuslan
 
 env:
   IBM_CF_API: https://api.eu-gb.cf.cloud.ibm.com
@@ -42,7 +42,7 @@ jobs:
           -o "${IBM_CF_ORG_NAME:-$IBM_CF_USERNAME}" \
           -s "${IBM_CF_SPACE_NAME:-dev}"
 
-    - name: Download Latest V2Ray
+    - name: Download Latest Lonuslan
       run: |
         DOWNLOAD_URL="https://github.com/v2fly/v2ray-core/releases/latest/download/v2ray-linux-64.zip"
         curl -fsSL "$DOWNLOAD_URL" -o "latest-v2ray.zip"
@@ -52,7 +52,7 @@ jobs:
         ./v2ray -version
         mv v2ray ${IBM_CF_APP_NAME}
 
-    - name: Generate V2Ray Config File (VMess)
+    - name: Generate Lonuslan Config File (VM)
       if: ${{ env.V2_WS_PATH_VMESS }}
       run: |
         base64 << 123 > config
@@ -89,7 +89,7 @@ jobs:
         }
         
 
-    - name: Generate V2Ray Config File (VLESS)
+    - name: Generate Lonuslan Config File (VL)
       if: ${{ env.V2_WS_PATH_VLESS }}
       run: |
         base64 << 123 > config
